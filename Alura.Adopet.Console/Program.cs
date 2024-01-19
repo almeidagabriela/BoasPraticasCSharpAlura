@@ -1,6 +1,7 @@
 ﻿using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using Alura.Adopet.Console;
+using Alura.Adopet.Console.Comandos;
 
 Console.ForegroundColor = ConsoleColor.Green;
 try
@@ -11,22 +12,22 @@ try
     {
         case "import":
             var import = new Import();
-            await import.ImportacaoArquivoPetAsync(caminhoDoArquivoDeImportacao: args[1]);
+            await import.ExecutarAsync(args);
 
             break;
         case "help":
             var help = new Help();
-            help.ListaDeComandos(args);
+            await help.ExecutarAsync(args);
 
             break;
         case "show":
             var show = new Show();
-            show.ListaDadosASerImportados(caminhoDoArquivoASerExibido: args[1]);
+            await show.ExecutarAsync(args);
 
             break;
         case "list":
             var list = new List();
-            await list.ListaPetsAsync();
+            await list.ExecutarAsync(args);
             
             break;
         default:

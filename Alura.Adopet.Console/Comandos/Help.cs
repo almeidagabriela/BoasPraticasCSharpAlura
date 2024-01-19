@@ -5,11 +5,11 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Alura.Adopet.Console
+namespace Alura.Adopet.Console.Comandos
 {
     [DocComando(instrucao: "help", documentacao: "adopet help comando que exibe informações da ajuda. \n" +
                                                  "adopet help <NOME_COMANDO> para acessar a ajuda de um comando específico.")]
-    internal class Help
+    internal class Help : IComando
     {
         private Dictionary<string, DocComando> docs;
 
@@ -21,7 +21,13 @@ namespace Alura.Adopet.Console
                    .ToDictionary(d => d.Instrucao);
         }
 
-        public void ListaDeComandos(string[] comandos)
+        public Task ExecutarAsync(string[] args)
+        {
+            ListaDeComandos(comandos: args);
+            return Task.CompletedTask;
+        }
+
+        private void ListaDeComandos(string[] comandos)
         {
             System.Console.WriteLine("Lista de comandos.");
             // se não passou mais nenhum argumento mostra help de todos os comandos
@@ -32,7 +38,7 @@ namespace Alura.Adopet.Console
                 System.Console.WriteLine("Adopet (1.0) - Aplicativo de linha de comando (CLI).");
                 System.Console.WriteLine("Realiza a importação em lote de um arquivos de pets.");
                 System.Console.WriteLine("Comando possíveis: ");
-                
+
                 foreach (var doc in docs.Values)
                 {
                     System.Console.WriteLine(doc.Documentacao);
