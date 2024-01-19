@@ -3,22 +3,16 @@ using System.Net.Http.Json;
 using Alura.Adopet.Console;
 using Alura.Adopet.Console.Comandos;
 
-Dictionary<string, IComando> comandosDoSistema = new()
-{
-    {"help", new Help() },
-    {"import", new Import() },
-    {"show", new Show() },
-    {"list", new List() }
-};
+ComandosDoSistema comandosDoSistema = new();
 
 Console.ForegroundColor = ConsoleColor.Green;
 try
 {
     string comando = args[0].Trim();
+    IComando? comandoASerExecutado = comandosDoSistema[comando];
 
-    if (comandosDoSistema.ContainsKey(comando))
+    if (comandoASerExecutado is not null)
     {
-        IComando? comandoASerExecutado = comandosDoSistema[comando];
         await comandoASerExecutado.ExecutarAsync(args);
     } 
     else
