@@ -35,13 +35,13 @@ namespace Alura.Adopet.Testes
         }
 
         [Fact]
-        public void QuandoStringForVaziaDeveRetornarExcecao()
+        public void QuandoStringForVaziaDeveLancarArgumentException()
         {
             // Arrange
             string linha = string.Empty;
 
             // Act + Assert
-            Assert.ThrowsAny<Exception>(() => linha.ConverteDoTexto());
+            Assert.ThrowsAny<ArgumentException>(() => linha.ConverteDoTexto());
         }
 
         [Fact]
