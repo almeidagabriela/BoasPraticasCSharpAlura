@@ -17,8 +17,11 @@ namespace Alura.Adopet.Console.Util
 
             if (propriedades.Length != 3) throw new ArgumentException("Texto inválido!");
 
+            bool sucesso = Guid.TryParse(propriedades[0], out Guid petId);
+            if (!sucesso) throw new ArgumentException("Guid inválido!");
+
             return new Pet(
-                Guid.Parse(propriedades[0]),
+                petId,
                 propriedades[1],
                 int.Parse(propriedades[2]) == 1 ? TipoPet.Gato : TipoPet.Cachorro
             );

@@ -55,13 +55,13 @@ namespace Alura.Adopet.Testes
         }
 
         [Fact]
-        public void QuandoGuidForInvalidoDeveRetornarExcecao()
+        public void QuandoGuidForInvalidoDeveLancarArgumentException()
         {
             // Arrange
             string linha = "456b24f4-19e2-4423-845d;Lima Limão;1";
 
             // Act
-            Assert.ThrowsAny<Exception>(() => linha.ConverteDoTexto());
+            Assert.ThrowsAny<ArgumentException>(() => linha.ConverteDoTexto());
         }
 
         [Fact]
