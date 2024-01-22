@@ -15,6 +15,8 @@ namespace Alura.Adopet.Console.Util
 
             if (string.IsNullOrEmpty(linha)) throw new ArgumentException("Texto não pode ser vazio!");
 
+            if (propriedades.Length != 3) throw new ArgumentException("Texto inválido!");
+
             return new Pet(
                 Guid.Parse(propriedades[0]),
                 propriedades[1],

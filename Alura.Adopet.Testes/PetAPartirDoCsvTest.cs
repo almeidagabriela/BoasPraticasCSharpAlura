@@ -45,13 +45,13 @@ namespace Alura.Adopet.Testes
         }
 
         [Fact]
-        public void QuandoFaltarCamposDeveRetornarExcecao()
+        public void QuandoFaltarCamposDeveLancarArgumentException()
         {
             // Arrange
             string linha = "456b24f4-19e2-4423-845d-4a80e8854a41;Lima Limão";
 
             // Act
-            Assert.ThrowsAny<Exception>(() => linha.ConverteDoTexto());
+            Assert.ThrowsAny<ArgumentException>(() => linha.ConverteDoTexto());
         }
 
         [Fact]
