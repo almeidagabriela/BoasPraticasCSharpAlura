@@ -65,17 +65,13 @@ namespace Alura.Adopet.Testes
         }
 
         [Fact]
-        public void QuandoTipoForInvalidoDeveRetornarCachorro()
+        public void QuandoTipoForInvalidoDeveLancarArgumentException()
         {
             // Arrange
             string linha = "456b24f4-19e2-4423-845d-4a80e8854a41;Lima Limão;99";
-            TipoPet cachorro = TipoPet.Cachorro;
 
             // Act
-            Pet pet = linha.ConverteDoTexto();
-
-            // Assert
-            Assert.Equal(cachorro, pet.Tipo);
+            Assert.ThrowsAny<ArgumentException>(() => linha.ConverteDoTexto());
         }
     }
 }
