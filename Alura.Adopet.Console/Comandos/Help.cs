@@ -13,11 +13,10 @@ namespace Alura.Adopet.Console.Comandos
     internal class Help : IComando
     {
         private Dictionary<string, DocComando> docsComandos;
-        private Docs _docs = new Docs();
 
         public Help()
         {
-            docsComandos = _docs.CriaDicionarioComandos();
+            docsComandos = Docs.ToDictionary(Assembly.GetExecutingAssembly());
         }
 
         public Task ExecutarAsync(string[] args)

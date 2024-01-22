@@ -10,9 +10,9 @@ namespace Alura.Adopet.Console.Util
 {
     public class Docs
     {
-        public Dictionary<string, DocComando> CriaDicionarioComandos()
+        public static Dictionary<string, DocComando> ToDictionary(Assembly assemblyComTipoDocComando)
         {
-            return Assembly.GetExecutingAssembly().GetTypes()
+            return assemblyComTipoDocComando.GetTypes()
                    .Where(t => t.GetCustomAttributes<DocComando>().Any())
                    .Select(t => t.GetCustomAttribute<DocComando>()!)
                    .ToDictionary(d => d.Instrucao);
