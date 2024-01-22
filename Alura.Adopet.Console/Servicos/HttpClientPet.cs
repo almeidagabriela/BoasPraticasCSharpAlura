@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Alura.Adopet.Console.Servicos
 {
-    internal class HttpClientPet
+    public class HttpClientPet
     {
         private HttpClient client;
 
