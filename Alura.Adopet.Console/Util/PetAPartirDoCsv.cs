@@ -9,9 +9,9 @@ namespace Alura.Adopet.Console.Util
 {
     public static class PetAPartirDoCsv
     {
-        public static Pet ConverteDoTexto(this string linha)
+        public static Pet ConverteDoTexto(this string? linha)
         {
-            string[] propriedades = linha.Split(';');
+            string[]? propriedades = linha?.Split(';') ?? throw new ArgumentNullException("Texto não pode ser nulo!");
 
             return new Pet(
                 Guid.Parse(propriedades[0]),

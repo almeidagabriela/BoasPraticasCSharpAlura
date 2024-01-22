@@ -25,13 +25,13 @@ namespace Alura.Adopet.Testes
         }
 
         [Fact]
-        public void QuandoStringForNulaDeveRetornarExcecao()
+        public void QuandoStringForNulaDeveLancarArgumentNullException()
         {
             // Arrange
             string? linha = null;
 
             // Act + Assert
-            Assert.ThrowsAny<Exception>(() => linha.ConverteDoTexto());
+            Assert.ThrowsAny<ArgumentNullException>(() => linha.ConverteDoTexto());
         }
 
         [Fact]
