@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Alura.Adopet.Console.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -11,14 +12,12 @@ namespace Alura.Adopet.Console.Comandos
                                                  "adopet help <NOME_COMANDO> para acessar a ajuda de um comando específico.")]
     internal class Help : IComando
     {
-        private Dictionary<string, DocComando> docs;
+        private Dictionary<string, DocComando> docsComandos;
+        private Docs _docs = new Docs();
 
         public Help()
         {
-            docs = Assembly.GetExecutingAssembly().GetTypes()
-                   .Where(t => t.GetCustomAttributes<DocComando>().Any())
-                   .Select(t => t.GetCustomAttribute<DocComando>()!)
-                   .ToDictionary(d => d.Instrucao);
+            docsComandos = _docs.CriaDicionarioComandos();
         }
 
         public Task ExecutarAsync(string[] args)
@@ -39,7 +38,7 @@ namespace Alura.Adopet.Console.Comandos
                 System.Console.WriteLine("Realiza a importação em lote de um arquivos de pets.");
                 System.Console.WriteLine("Comando possíveis: ");
 
-                foreach (var doc in docs.Values)
+                foreach (var doc in docsComandos.Values)
                 {
                     System.Console.WriteLine(doc.Documentacao);
                 }
@@ -51,9 +50,9 @@ namespace Alura.Adopet.Console.Comandos
             {
                 string comandoASerExibido = comandos[1];
 
-                if (docs.ContainsKey(comandoASerExibido))
+                if (docsComandos.ContainsKey(comandoASerExibido))
                 {
-                    var comando = docs[comandoASerExibido];
+                    var comando = docsComandos[comandoASerExibido];
                     System.Console.WriteLine(comando.Documentacao);
                 }
             }
